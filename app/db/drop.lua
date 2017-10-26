@@ -7,10 +7,14 @@
 --
 
 local console = require('console')
+
 box.cfg {
+    wal_dir = './logs/xlog_files',
+    memtx_dir = './logs/snap_files',
     log_level = 5,
     slab_alloc_arena = 1,
 }
+
 console.listen('127.0.0.1:33013')
 
 if box.space.showroom then

@@ -17,6 +17,13 @@ local PORT = 8008
 
 console.listen('0.0.0.0:33013')
 
+box.cfg {
+    wal_dir = './logs/xlog_files',
+    memtx_dir = './logs/snap_files',
+    log_level = 5,
+    slab_alloc_arena = 1,
+}
+
 httpd = server.new(HOST, PORT)
 httpd:route({method = 'GET', path = '/designer', file='designers.html.el'})
     :route({method = 'GET', path = '/get_designers'}, api.get_all_designers)
