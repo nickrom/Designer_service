@@ -1,1 +1,0 @@
-/usr/bin/cc  -fPIC -O2 -g -DNDEBUG  -shared -Wl,-soname,lib.so -o lib.so CMakeFiles/httpd.dir/lib.c.o 
