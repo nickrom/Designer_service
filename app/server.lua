@@ -25,11 +25,11 @@ box.cfg {
 }
 
 httpd = server.new(HOST, PORT)
-httpd:route({method = 'GET', path = '/designer', file='designers.html.el'})
+httpd:route({method = 'GET', path = '/designer', file='designers.html'})
     :route({method = 'GET', path = '/get_designers'}, api.get_all_designers)
-    :route({method = 'GET', path = '/showroom', file='showrooms.html.el'})
+    :route({method = 'GET', path = '/showroom', file='showrooms.html'})
     :route({method = 'GET', path = '/get_showrooms'}, api.get_all_showrooms)
-    :route({method = 'GET', path = '/signup_designer', file='signup_designer.html.el'})
+    :route({method = 'GET', path = '/signup_designer', file='signup_designer.html'})
     :route({method = 'GET', path = '/category'}, api.get_all_categories)
     --:route({method = 'GET', path = '/category?'}, api.get_all_categories)
     :route({method = 'GET', path = '/item'}, api.get_all_items)
