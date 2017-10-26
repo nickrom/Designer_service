@@ -255,4 +255,19 @@ form.signup-form {
 #myCarousel {
   width: 857px !important; }
 
+.signin-form-wrapper {
+  position: relative;
+  margin-left: -428.5px;
+  left: 50%;
+}
+
+.signin-form-wrapper > form {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signin-form {
+  width: 450px;
+}
 /*# sourceMappingURL=style.css.map */
