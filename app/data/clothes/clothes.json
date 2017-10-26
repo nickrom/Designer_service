@@ -1,0 +1,32 @@
+{
+	"clothes" : [
+		{
+			"id" : 1,
+			"name": "Женская сиреневая рубашка",
+			"about": "Модная рубашка для осени. Сделана из итальянских тканей",
+			"sizes": [
+				38, 
+				40,
+				42
+			],
+			"designer" : 1,
+			"category" : 30,
+			"des_price" : 1500,
+			"showroom" : null,
+			"show_price" : 1500,
+			"status_code" : 1,
+			"photos" : [
+				"./photos/1.jpg",
+				"./photos/2.jpg",
+				"./photos/3.jpg",
+				"./photos/4.jpg",
+				"./photos/5.jpg"
+			]
+		},
+		{
+			"id" : 2,
+			...
+		},
+		...
+	]
+}

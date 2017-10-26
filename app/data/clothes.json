@@ -1,0 +1,601 @@
+	{
+	    "id": 1,
+	    "name": "одежда",
+	    "parent": null,
+	    "subcategories": [
+
+	        {
+	            "id": 2,
+	            "name": "женская одежда",
+	            "parent": 1,
+	            "subcategories": [
+
+	                {
+	                    "id": 3,
+	                    "name": "куртки и пальто",
+	                    "parent": 2,
+	                    "subcategories": [
+
+	                        {
+	                            "id": 4,
+	                            "name": "куртки",
+	                            "parent": 3,
+	                            "subcategories": []
+	                        },
+	                        {
+	                            "id": 5,
+	                            "name": "пальто",
+	                            "parent": 3,
+	                            "subcategories": []
+	                        },
+	                        {
+	                            "id": 6,
+	                            "name": "парки",
+	                            "parent": 3,
+	                            "subcategories": []
+	                        },
+	                        {
+	                            "id": 7,
+	                            "name": "шубы",
+	                            "parent": 3,
+	                            "subcategories": []
+	                        },
+	                        {
+	                            "id": 8,
+	                            "name": "бомберы",
+	                            "parent": 3,
+	                            "subcategories": []
+	                        },
+	                        {
+	                            "id": 9,
+	                            "name": "ветровки",
+	                            "parent": 3,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+	                {
+	                    "id": 10,
+	                    "name": "платья и юбки",
+	                    "parent": 2,
+	                    "subcategories": [
+
+	                        {
+	                            "id": 11,
+	                            "name": "короткие платья",
+	                            "parent": 3,
+	                            "subcategories": []
+	                        },
+	                        {
+	                            "id": 12,
+	                            "name": "длинные платья",
+	                            "parent": 3,
+	                            "subcategories": []
+	                        },
+	                        {
+	                            "id": 13,
+	                            "name": "юбки",
+	                            "parent": 10,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+	                {
+	                    "id": 14,
+	                    "name": "штаны",
+	                    "parent": 2,
+	                    "subcategories": [
+
+
+	                        {
+	                            "id": 15,
+	                            "name": "джинсы",
+	                            "parent": 14,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 16,
+	                            "name": "шорты",
+	                            "parent": 14,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 17,
+	                            "name": "брюки",
+	                            "parent": 14,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 18,
+	                            "name": "легинсы",
+	                            "parent": 14,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 19,
+	                            "name": "комбенизоны",
+	                            "parent": 14,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+
+	                {
+	                    "id": 20,
+	                    "name": "верх",
+	                    "parent": 2,
+	                    "subcategories": [
+
+	                        {
+	                            "id": 21,
+	                            "name": "блузки",
+	                            "parent": 20,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 22,
+	                            "name": "джемперы",
+	                            "parent": 20,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 23,
+	                            "name": "кофты",
+	                            "parent": 20,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 24,
+	                            "name": "футболки",
+	                            "parent": 20,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 25,
+	                            "name": "майки",
+	                            "parent": 20,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 26,
+	                            "name": "кардиганы",
+	                            "parent": 20,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 27,
+	                            "name": "водолазки",
+	                            "parent": 20,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 28,
+	                            "name": "толстовки",
+	                            "parent": 20,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 29,
+	                            "name": "топы",
+	                            "parent": 20,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 30,
+	                            "name": "рубашки",
+	                            "parent": 20,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+
+	                {
+	                    "id": 31,
+	                    "name": "аксессуары",
+	                    "parent": 2,
+	                    "subcategories": [
+
+
+
+	                        {
+	                            "id": 32,
+	                            "name": "ремни",
+	                            "parent": 31,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 33,
+	                            "name": "заколки",
+	                            "parent": 31,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 34,
+	                            "name": "головные уборы",
+	                            "parent": 31,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 35,
+	                            "name": "перчатки",
+	                            "parent": 31,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 36,
+	                            "name": "сумки",
+	                            "parent": 31,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 37,
+	                            "name": "браслеты",
+	                            "parent": 31,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+	                {
+	                    "id": 38,
+	                    "name": "белье",
+	                    "parent": 2,
+	                    "subcategories": [
+
+
+	                        {
+	                            "id": 39,
+	                            "name": "трусики",
+	                            "parent": 38,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 40,
+	                            "name": "бюсгалтеры",
+	                            "parent": 38,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 41,
+	                            "name": "корсеты",
+	                            "parent": 38,
+	                            "subcategories": []
+	                        },
+	                        {
+	                            "id": 42,
+	                            "name": "чулки",
+	                            "parent": 38,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 43,
+	                            "name": "пижама",
+	                            "parent": 38,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 44,
+	                            "name": "носочки",
+	                            "parent": 38,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+	                {
+	                    "id": 45,
+	                    "name": "костюмы",
+	                    "parent": 2,
+	                    "subcategories": [
+
+
+	                        {
+	                            "id": 46,
+	                            "name": "строгие костюмы",
+	                            "parent": 45,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 47,
+	                            "name": "кежуал",
+	                            "parent": 45,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                }
+	            ]
+	        },
+
+
+	        {
+	            "id": 48,
+	            "name": "мужская одежда",
+	            "parent": 1,
+	            "subcategories": [
+
+
+	                {
+	                    "id": 49,
+	                    "name": "куртки и пальто",
+	                    "parent": 48,
+	                    "subcategories": [
+
+
+	                        {
+	                            "id": 50,
+	                            "name": "куртки",
+	                            "parent": 49,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 51,
+	                            "name": "пальто",
+	                            "parent": 49,
+	                            "subcategories": []
+	                        },
+	                        {
+	                            "id": 52,
+	                            "name": "парки",
+	                            "parent": 49,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 53,
+	                            "name": "ветровки",
+	                            "parent": 49,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+
+
+
+	                {
+	                    "id": 54,
+	                    "name": "штаны",
+	                    "parent": 48,
+	                    "subcategories": [
+
+	                        {
+	                            "id": 55,
+	                            "name": "джинсы",
+	                            "parent": 54,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 56,
+	                            "name": "шорты",
+	                            "parent": 54,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 57,
+	                            "name": "брюки",
+	                            "parent": 54,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 58,
+	                            "name": "комбенизоны",
+	                            "parent": 54,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 59,
+	                            "name": "повседневные штаны",
+	                            "parent": 54,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+
+
+
+	                {
+	                    "id": 60,
+	                    "name": "верх",
+	                    "parent": 48,
+	                    "subcategories": [
+
+
+
+
+	                        {
+	                            "id": 61,
+	                            "name": "джемперы",
+	                            "parent": 60,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 62,
+	                            "name": "кофты",
+	                            "parent": 60,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 63,
+	                            "name": "футболки",
+	                            "parent": 60,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 64,
+	                            "name": "майки",
+	                            "parent": 60,
+	                            "subcategories": []
+	                        },
+
+
+
+	                        {
+	                            "id": 65,
+	                            "name": "водолазки",
+	                            "parent": 60,
+	                            "subcategories": []
+	                        },
+
+
+	                        {
+	                            "id": 66,
+	                            "name": "толстовки",
+	                            "parent": 60,
+	                            "subcategories": []
+	                        },
+
+
+
+	                        {
+	                            "id": 67,
+	                            "name": "рубашки",
+	                            "parent": 60,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+
+
+
+	                {
+	                    "id": 68,
+	                    "name": "белье",
+	                    "parent": 48,
+	                    "subcategories": [
+
+	                        {
+	                            "id": 69,
+	                            "name": "боксеры",
+	                            "parent": 68,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 70,
+	                            "name": "брифы",
+	                            "parent": 68,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+
+
+	                {
+	                    "id": 71,
+	                    "name": "костюмы",
+	                    "parent": 48,
+	                    "subcategories": [
+
+
+	                        {
+	                            "id": 72,
+	                            "name": "строгие костюмы",
+	                            "parent": 71,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 73,
+	                            "name": "кежуал",
+	                            "parent": 71,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                },
+
+	                {
+	                    "id": 72,
+	                    "name": "аксессуары",
+	                    "parent": 48,
+	                    "subcategories": [
+
+
+	                        {
+	                            "id": 73,
+	                            "name": "ремни",
+	                            "parent": 72,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 74,
+	                            "name": "головные уборы",
+	                            "parent": 72,
+	                            "subcategories": []
+	                        },
+	                        {
+	                            "id": 75,
+	                            "name": "перчатки",
+	                            "parent": 72,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 76,
+	                            "name": "сумки",
+	                            "parent": 72,
+	                            "subcategories": []
+	                        },
+
+	                        {
+	                            "id": 77,
+	                            "name": "браслеты",
+	                            "parent": 72,
+	                            "subcategories": []
+	                        }
+	                    ]
+	                }
+	            ]
+	        }
+	    ]
+	}

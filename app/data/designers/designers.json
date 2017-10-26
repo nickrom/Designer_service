@@ -1,0 +1,24 @@
+{
+	"designers" : [
+		{
+			"id" : 1,
+			"nickname" : "goshan",
+			"email" : "gosha_rub@mail.ru",
+			"password" : "thebest123",
+			"name" : "Gosha Rubchinskiy",
+			"phone" : "+7912331232",
+			"about" : "I am the best designer from Russia. My style is Modern Soviet style",
+			"address": {
+				"city" : "Москва",
+				"street" : "пр. Мира",
+				"house" : "6"
+			},
+			"photos" : "./photos/i.jpeg"
+		},
+		{
+			"id" : 2,
+			...
+		},
+		...
+	]
+}
