@@ -1,8 +1,3 @@
-/**
- * Created by alex on 25.10.17.
- */
-
-
 function sendSignupData() {
   let inputsSelectors = [
     {selector: "#inputNickname", field: 'nickname'},
@@ -28,37 +23,16 @@ function sendSignupData() {
     reqData['address'][addr.field] = $(addr.selector).val();
   }
 
-
-  //let $avaUpload = $("#avatarUpload")[0];
   let imgB64='[image]';
   reqData['photos'] = imgB64;
 
   alert('request data' + JSON.stringify(reqData));
 
 
-  $.ajax("/api/settings", {dataType: 'json'}).then((config) => {
-    return $.ajax( config.apiSvcUrl + ':' + config.apiSvcPort + '/designer',{
+
+  $.ajax('/designer',{
       method: 'POST', data: JSON.stringify(reqData)
-    });
   }).done(() => {
      console.log('post data: success');
   });
-  // let imgB64 = ""
-  // if ($avaUpload && $avaUpload.files[0]) {
-  //   let reader = new FileReader();
-  //   reader.onload = function (e) {
-  //
-  //
-  //   };
-  //   reader.readAsDataURL(input.files[0]);
-  // }
-
-
 }
-
-// $(document).ready(function() {
-//   $(".signup-form").submit((e) => {
-//     console.log('123');
-//     sendSignupData();
-//   });
-// });

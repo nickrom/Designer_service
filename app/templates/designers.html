@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf8">
     <title>Дизайнеры</title>
-    <link rel="stylesheet" href="stylesheets/style.css">
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
@@ -13,33 +14,21 @@
         <nav class="navbar navbar-default no-margin-bottom">
             <div class="container-fluid header-container">
                 <div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a href="#" class="navbar-brand">Магазин одежды</a>
+                    <a href="/" class="navbar-brand">Магазин одежды</a>
                     <form role="search" class="navbar-form navbar-left">
                         <div class="form-group"><input type="text" placeholder="Поиск одежды, шоурума или дизайнера ..." class="input-400 form-control"></div><button type="submit" class="btn btn-default">Поиск</button></form>
                 </div>
-                <!--ul.nav.navbar-nav.navbar-right.padding-right//li
-  //a.basket(href='#')
-    //span
-    //| Корзина-->
-                <!--.profileInfo-->
-                <!--  span.name-->
-                <!--    a(href='#') #{userName}-->
-                <!--  span.role-->
-                <!--    | #{profileRole}-->
                 <ul class="nav navbar-nav profile">
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="porfile dropdown-toggle">
                             <div class="profileInfo"><span class="user-name">Romanov Nikita</span><br><span class="user-role">дизайнер</span></div>
-                            <div class="avatar-wrapper"><img src="images/romanov.jpg"><span class="caret"></span></div>
+                            <div class="avatar-wrapper"><img src="/images/romanov.jpg"><span class="caret"></span></div>
                         </a>
                         <ul role="menu" class="dropdown-menu">
                             <li><a href="#">Моя страница</a></li>
                             <li><a href="#">Редактировать</a></li>
                             <li><a href="#">Выйти</a></li>
                             <!--li.divider-->
-
-
-
                         </ul>
                     </li>
                 </ul>
@@ -56,20 +45,26 @@
         </nav>
     </div>
     <div class="content">
-        <table class="table" id="tblUsers">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-        </table>
+        <div class="col-left">
+            <div class="tree"></div>
+        </div>
+        <div class="col-center">
+            <table class="table" id="tblUsers">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+            </table>
+        </div>
     </div>
-    <script type="text/javascript" src="javascripts/libs/popper.js"></script>
-    <script type="text/javascript" src="javascripts/libs/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/libs/bootstrap.js"></script>
-    <script type="text/javascript" src="javascripts/common.js"></script>
+    <script type="text/javascript" src="/javascripts/libs/popper.js"></script>
+    <script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
+    <script type="text/javascript" src="/javascripts/common.js"></script>
+    <script type="text/javascript" src="/javascripts/category-tree.js"></script>
     <script>
             fetch('/get_designers').then(resp => {
                 resp.json().then(data => {

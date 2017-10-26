@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf8">
     <title>Шоурумы</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
 <div class="header">
@@ -14,7 +15,7 @@
                 <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
                         class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span
                         class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a href="#" class="navbar-brand">Магазин одежды</a>
+                <a href="/" class="navbar-brand">Магазин одежды</a>
                 <form role="search" class="navbar-form navbar-left">
                     <div class="form-group"><input type="text" placeholder="Поиск одежды, шоурума или дизайнера ..."
                                                    class="input-400 form-control"></div>
@@ -55,39 +56,45 @@
     </nav>
 </div>
 <div class="content">
-<table class="table" id="tblUsers">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
+    <div class="col-left">
+        <div class="tree"></div>
+    </div>
+    <div class="col-center">
+        <table class="table" id="tblUsers">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+            </thead>
         </table>
+    </div>
 </div>
 <script type="text/javascript" src="/javascripts/libs/popper.js"></script>
 <script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
 <script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
 <script type="text/javascript" src="/javascripts/common.js"></script>
-<script>
-            fetch('/get_showrooms').then(resp => {
-                resp.json().then(data => {
+<script type="text/javascript" src="/javascripts/category-tree.js"></script>
+<script type="text/javascript">
+    fetch('/get_showrooms').then(resp => {
+        resp.json().then(data => {
 
-                    function createCell(tr, txt){
-                        tr.insertCell().appendChild(
-                        document.createTextNode(txt));
-                        }
+            function createCell(tr, txt) {
+                tr.insertCell().appendChild(
+                document.createTextNode(txt));
+            }
 
-                    let tblUsers = document.getElementById('tblUsers');
+            let tblUsers = document.getElementById('tblUsers');
 
-                    for(let i=0;i<data.showrooms.length;i++){
-                                        var tr = tblUsers.insertRow();
-                                        createCell(tr, data.showrooms[i].id);
-                                        createCell(tr, data.showrooms[i].name);
-                                        createCell(tr, data.showrooms[i].email);
-                                    }
-                });
-            });
+            for (let i = 0; i < data.showrooms.length; i++) {
+                let tr = tblUsers.insertRow();
+                createCell(tr, data.showrooms[i].id);
+                createCell(tr, data.showrooms[i].name);
+                createCell(tr, data.showrooms[i].email);
+            }
+        });
+    });
 </script>
 </body>
 </html>
