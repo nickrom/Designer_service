@@ -22,15 +22,15 @@ function sendSignupData() {
         reqData['address'][addr.field] = $(addr.selector).val();
     }
 
-
     let imgB64 = '[image]';
     reqData['photos'] = imgB64;
 
-    alert('request data' + JSON.stringify(reqData));
-
-    $.ajax('/showroom', {
-            method: 'POST', data: JSON.stringify(reqData)
-    }).done(() => {
-        console.log('post data: success');
+    fetch('/showroom', {
+        method: 'POST',
+        body: JSON.stringify(reqData),
+        redirect: 'follow'}
+    ).then(resp => {
+        window.location.href = resp.url;
     });
+
 }

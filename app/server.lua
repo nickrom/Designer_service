@@ -9,6 +9,7 @@
 local log = require('log')
 local console = require('console')
 local server = require('http.server')
+local views = require('views')
 
 local api = require('api')
 
@@ -25,7 +26,7 @@ box.cfg {
 }
 
 httpd = server.new(HOST, PORT)
-httpd:route({method = 'GET', path = '/', file='index.html'})
+httpd:route({method = 'GET', path = '/', file='index.html'}, views.homepage)
     :route({method = 'GET', path = '/signin', file='signin.html'})
     :route({method = 'GET', path = '/designer', file='designers.html'})
     :route({method = 'GET', path = '/get_designers'}, api.get_all_designers)
@@ -44,3 +45,5 @@ httpd:route({method = 'POST', path = '/designer' }, api.add_designer)
     :route({method = 'POST', path = '/showroom'}, api.add_showroom)
     :route({method = 'POST', path = '/signin'}, api.sign_in)
 httpd:start()
+
+
