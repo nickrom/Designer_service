@@ -90,8 +90,29 @@ function api.get_all_categories(self)
 end
 
 function api.get_all_items(self)
-    local data = box.space.item:select({})
-    return self:render({json = data})
+    local data = {
+        items = {},
+        count = box.space.item:len()
+    }
+    for k, d  in box.space.item:pairs{} do
+        table.insert(data.items, {
+            id = d[1],
+            name = d[2],
+            about = d[3],
+            sizes = d[4],
+            designer = d[5],
+            category = d[6],
+            des_price = d[7],
+            showroom = d[8],
+            sw_price = d[9],
+            status = d[10],
+            photos = d[11]
+        })
+    end
+    local resp = self:render({json = data})
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.status = 200
+    return resp
 end
 
 function api.add_designer(self)

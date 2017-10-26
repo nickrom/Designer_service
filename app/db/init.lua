@@ -41,13 +41,13 @@ if not box.space.item then
     s:create_index('primary',
         {type = 'tree', unique=true, parts = {1, 'unsigned'}})
     s:create_index('name',
-        {type = 'tree', parts = {2, 'string'}})
+        {type = 'tree', unique=false, parts = {2, 'string'}})
     s:create_index('designer',
-        {type = 'tree', parts = {5, 'unsigned'}})
+        {type = 'tree', unique=false, parts = {5, 'unsigned'}})
     s:create_index('category',
-        {type = 'tree', parts = {6, 'unsigned'}})
+        {type = 'tree', unique=false, parts = {6, 'unsigned'}})
     s:create_index('showroom',
-        {type = 'tree', parts = {8, 'unsigned'}})
+        {type = 'tree', unique=false, parts = {8, 'unsigned'}})
 end
 
 if not box.space.designer then
