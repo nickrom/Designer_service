@@ -131,4 +131,30 @@ function api.add_showroom(self)
     end
 end
 
+function api.sign_in(self)
+    local data = self:json()
+
+    local ok = box.space.showroom.index.email:select(data["email"])
+    if (ok[1]) then
+        if (ok[1][4] == data["password"]) then
+            local resp = self:redirect_to('/')
+            resp.headers['Access-Control-Allow-Origin'] = '*'
+            resp.status = 303
+            local s_id = box.space.sessions:auto_increment{data["email"], 2 }
+            return resp:setcookie({name = 'tarantool_id', value = s_id[1], expires = '+1y'})
+        end
+    end
+    local ok = box.space.designer.index.email:select(data["email"])
+    if (ok[1]) then
+        if (ok[1][4] == data["password"]) then
+            local resp = self:redirect_to('/')
+            resp.headers['Access-Control-Allow-Origin'] = '*'
+            resp.status = 303
+            local s_id = box.space.sessions:auto_increment{data["email"], 1}
+            return resp:setcookie({name = 'tarantool_id', value = s_id[1], expires = '+1y'})
+        end
+    end
+    return self:render({text = 'Failed'})
+end
+
 return api
