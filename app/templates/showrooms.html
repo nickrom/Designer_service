@@ -80,15 +80,7 @@
         <div class="tree"></div>
     </div>
     <div class="col-center">
-        <table class="table" id="tblUsers">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
-            </thead>
-        </table>
+        <div id="productItems"></div>
     </div>
 </div>
 <script type="text/javascript" src="/javascripts/libs/popper.js"></script>
@@ -96,24 +88,47 @@
 <script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
 <script type="text/javascript" src="/javascripts/category-tree.js"></script>
 <script type="text/javascript">
-    fetch('/get_showrooms').then(resp => {
-        resp.json().then(data => {
+    fetch('/get_showrooms')
+        .then(resp => resp.json())
+        .then(data => {
+            console.log("Showrooms", data);
+            props = [
+                {name: "about", label: 'Описание'},
+                {name: "phone", label: 'Телефон'},
+                {name: "email", label: 'Email'}
+            ];
 
-            function createCell(tr, txt) {
-                tr.insertCell().appendChild(
-                    document.createTextNode(txt));
+            let showroomsItems = [];
+
+            for (let item of data.showrooms) {
+                let infoItems = [];
+                let location = ['city', 'street', 'house']
+                    .map(field => item[field])
+                    .join(', ');
+
+                for (let prop of props) {
+                    infoItems.push(`<li><span>${prop.label}</span>: ${item[prop.name]}</li>`);
+                }
+
+                infoItems.splice(1, 0, `<li><span>Адрес</span>: ${location}</li>`);
+
+
+                let itemHtml = "";
+
+                itemHtml += `<div class="product-item card card-default">`;
+                itemHtml += `<div class="card-body"><img src="/images/showrooms/${item.photos[0]}">`;
+                itemHtml += `<div class="product-content">`;
+                itemHtml += `<h3><a href="#">${item.name}</a></h3>`;
+                itemHtml += `<div class="product-info">`;
+                itemHtml += `<ul class="product-desc-list">`;
+                itemHtml += infoItems.join('');
+                itemHtml += `</ul></div></div></div></div>`;
+
+                showroomsItems.push(itemHtml);
             }
 
-            let tblUsers = document.getElementById('tblUsers');
-
-            for (let i = 0; i < data.showrooms.length; i++) {
-                let tr = tblUsers.insertRow();
-                createCell(tr, data.showrooms[i].id);
-                createCell(tr, data.showrooms[i].name);
-                createCell(tr, data.showrooms[i].email);
-            }
+            $("#productItems").html(showroomsItems.join(""));
         });
-    });
 </script>
 </body>
 </html>
