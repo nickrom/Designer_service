@@ -46,9 +46,12 @@ function api.get_all_showrooms(self)
             id = d[1],
             name = d[2],
             email = d[3],
-            about = d[4],
-            phone = d[6],
-            photos = d[7]
+            about = d[5],
+            city = d[6][1],
+            street = d[6][2],
+            house = d[6][3],
+            phone = d[7],
+            photos = d[8]
         })
     end
     local resp = self:render({json = data})
@@ -98,15 +101,19 @@ function api.get_all_items(self)
         count = box.space.item:len()
     }
     for k, d  in box.space.item:pairs{} do
+        local designer = box.space.designer:select(d[5])
+        local des_name = designer[1][5]
+        local showroom = box.space.showroom:select(d[8])
+        local sh_name = showroom[1][2]
         table.insert(data.items, {
             id = d[1],
             name = d[2],
             about = d[3],
             sizes = d[4],
-            designer = d[5],
+            designer = des_name,
             category = d[6],
             des_price = d[7],
-            showroom = d[8],
+            showroom = sh_name,
             sw_price = d[9],
             status = d[10],
             photos = d[11]
