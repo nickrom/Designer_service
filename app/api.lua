@@ -189,4 +189,13 @@ function api.sign_in(self)
     return self:render({text = 'Failed'})
 end
 
+function api.log_out(self)
+    local cookie = self:cookie('taarantool_id')
+    box.space.sessions:truncate(cookie)
+    local resp = self:redirect_to('/')
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.status = 303
+    return resp
+end
+
 return api

@@ -39,6 +39,7 @@ httpd:route({method = 'GET', path = '/', file='index.html'}, views.homepage)
     :route({method = 'GET', path = '/clothes', file='clothes.html'}, views.homepage)
     :route({method = 'GET', path = '/get_items'}, api.get_all_items)
     :route({method = 'GET', path = '/signin', file='signin.html'}, views.homepage)
+    :route({path = '/logout'}, api.log_out)
 
 httpd:route({method = 'POST', path = '/designer' }, api.add_designer)
     :route({method = 'POST', path = '/showroom'}, api.add_showroom)
