@@ -86,23 +86,28 @@
 <script type="text/javascript">
     fetch('/get_items').then(function(data) {
         data.json().then(function(products) {
-            let props = [{
-                type: "text",
-                name: "about",
-                label: "Описание"
-            }, {
-                type: "array",
-                name: "sizes",
-                label: "Размер"
-            }, {
-                type: "text",
-                name: 'showroom',
-                label: "Шоурум"
-            }, {
-                type: "text",
-                name: 'designer',
-                label: "Дизайнер"
-            }];
+            let props = [
+                {
+                    type: "text",
+                    name: "about",
+                    label: "Описание"
+                },
+                {
+                    type: "array",
+                    name: "sizes",
+                    label: "Размер"
+                },
+                {
+                    type: "text",
+                    name: 'showroom',
+                    label: "Шоурум"
+                },
+                {
+                    type: "text",
+                    name: 'designer',
+                    label: "Дизайнер"
+                }
+            ];
 
             let $items = $("#productItems");
             for (let item of products.items) {
@@ -129,7 +134,7 @@
 
                 $("<div></div>")
                     .addClass("price")
-                    .text(`от ${item.des_price} до ${item.sw_price}`)
+                    .text(`${item.des_price} руб.`)
                     .appendTo($info);
 
                 let $propsList = $("<ul></ul>")

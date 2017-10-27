@@ -1,9 +1,3 @@
-/**
- * Created by alex on 26.10.17.
- */
-
-const apiServHost = "http://localhost:8008";
-
 function createTree($place, tree) {
   if (!$place instanceof jQuery) {
     throw new Error("Invalid 1st argument. It must be instance of jQuery");
@@ -44,20 +38,18 @@ function createTree($place, tree) {
 }
 
 $(document).ready(function() {
-  $.ajax('http://127.0.0.1:8008/category', {
+  $.ajax('/category', {
       dataType: 'json'
     }).done((data) => {
-    let struct = JSON.parse(data);
+      let struct = JSON.parse(data);
 
-    console.log("GET "+ apiServHost + "/category - success");
-    console.log("Response data: ", struct);
-    createTree($('.tree'), struct);
-
-    $(".fa.category").on("click", e => {
-      let $obj = $(e.target);
-      $obj.toggleClass("opened");
-      $obj.parent().siblings("ul").toggleClass("opened");
-    });
+      createTree($('.tree'), struct);
+  
+      $(".fa.category").on("click", e => {
+        let $obj = $(e.target);
+        $obj.toggleClass("opened");
+        $obj.parent().siblings("ul").toggleClass("opened");
+      });
 
   });
 });
