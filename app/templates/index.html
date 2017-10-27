@@ -28,9 +28,18 @@
                             <div class="profileInfo"><span class="user-name">
                                 <%= name %>
                             </span><br><span class="user-role">
-                                <%= status %>
+                                % if (status == 1) then
+                                    Дизайнер
+                                % else
+                                    Шоурум
+                                % end
                             </span></div>
-                            <div class="avatar-wrapper"><img src=<%= "/images/designers/" .. photo %>
+                            <div class="avatar-wrapper"><img src=
+                                    % if (status == 1) then
+                                        <%= "/images/designers/" .. photo %>
+                                    % else
+                                        <%= "/images/showrooms/" .. photo %>
+                                    % end
                                 <span class="caret"></span></div>
                         </a>
                         <ul role="menu" class="dropdown-menu">

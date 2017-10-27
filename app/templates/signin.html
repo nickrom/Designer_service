@@ -23,8 +23,22 @@
             <ul class="nav navbar-nav profile">
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="porfile dropdown-toggle">
-                        <div class="profileInfo"><span class="user-name">Romanov Nikita</span><br><span class="user-role">дизайнер</span></div>
-                        <div class="avatar-wrapper"><img src="/images/romanov.jpg"><span class="caret"></span></div>
+                        <div class="profileInfo"><span class="user-name">
+                                <%= name %>
+                            </span><br><span class="user-role">
+                                % if (status == 1) then
+                                    Дизайнер
+                                % else
+                                    Шоурум
+                                % end
+                            </span></div>
+                        <div class="avatar-wrapper"><img src=
+                                                                 % if (status == 1) then
+                            <%= "/images/designers/" .. photo %>
+                            % else
+                            <%= "/images/showrooms/" .. photo %>
+                            % end
+                            <span class="caret"></span></div>
                     </a>
                     <ul role="menu" class="dropdown-menu">
                         <li><a href="#">Моя страница</a></li>
