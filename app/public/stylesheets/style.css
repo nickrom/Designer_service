@@ -203,10 +203,10 @@ span.arrow-right {
       height: 50px;
       border-radius: 50%; }
 
-form.signup-form {
+form.form-horizontal {
   position: absolute;
   top: 0;
-  width: 615px; }
+  width: 100%; }
 
 #avatarUpload {
   visibility: hidden; }
@@ -255,19 +255,26 @@ form.signup-form {
 #myCarousel {
   width: 857px !important; }
 
-.signin-form-wrapper {
-  position: relative;
-  margin-left: -428.5px;
-  left: 50%;
-}
+.float-right {
+  float: right; }
 
-.signin-form-wrapper > form {
+.form-wrapper {
   position: relative;
+  width: 600px;
   margin-left: auto;
-  margin-right: auto;
-}
+  margin-right: auto; }
 
-.signin-form {
-  width: 450px;
-}
+.product-item.card.card-default img {
+  width: 240px;
+  height: 240px; }
+
+.product-item.card.card-default ul.product-desc-list {
+  max-width: 530px; }
+  .product-item.card.card-default ul.product-desc-list > li {
+    line-height: 22px; }
+    .product-item.card.card-default ul.product-desc-list > li > span {
+      color: #5a5a5a;
+      font-weight: bold;
+      font-size: 11pt; }
+
 /*# sourceMappingURL=style.css.map */
