@@ -18,6 +18,23 @@
                 <form role="search" class="navbar-form navbar-left">
                     <div class="form-group"><input type="text" placeholder="Поиск одежды, шоурума или дизайнера ..." class="input-400 form-control"></div><button type="submit" class="btn btn-default">Поиск</button></form>
             </div>
+            <!--<%= isAuthorized %>-->
+            % if (isAuthorized == 1) then
+            <ul class="nav navbar-nav profile">
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="porfile dropdown-toggle">
+                        <div class="profileInfo"><span class="user-name">Romanov Nikita</span><br><span class="user-role">дизайнер</span></div>
+                        <div class="avatar-wrapper"><img src="/images/romanov.jpg"><span class="caret"></span></div>
+                    </a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="#">Моя страница</a></li>
+                        <li><a href="#">Редактировать</a></li>
+                        <li><a href="#">Выйти</a></li>
+                        <!--li.divider-->
+                    </ul>
+                </li>
+            </ul>
+            % else
             <ul class="nav navbar-nav float-right">
                 <li role="menu" class="dropdown"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">Зарегистрироваться</a>
                     <ul role="menu" class="dropdown-menu">
@@ -27,6 +44,7 @@
                 </li>
                 <li><a href="/signin">Войти</a></li>
             </ul>
+            % end
         </div>
     </nav>
     <nav class="navbar navbar-default navbar-1">
@@ -129,10 +147,11 @@
 
         reqData['image'] = '[image]';
 
-        fetch(+'/signup_showroom', {
+        fetch(+'/showroom', {
             method: 'POST',
             body: JSON.stringify(reqData),
-            redirect: 'follow'
+            redirect: 'follow',
+            credentials: 'same-origin'
         }).then(
             (resp) => {
                 window.location.href = resp.url;

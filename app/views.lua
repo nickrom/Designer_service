@@ -11,7 +11,19 @@ box.cfg {
 }
 
 function views.homepage(self)
-    return self:render({isAuthorized=0})
+    local cookie = self:cookie('tarantool_id')
+    local is_auth = box.space.sessions:select({cookie})
+    if (table.getn(is_auth) ~= 0) then
+        if (is_auth[1][3] == 1) then
+            local designer = box.space.designer.index.email:select({is_auth[1][2]})
+            return self:render({isAuthorized=1, name = designer[1][5], status = 'Дизайнер', photo = designer[1][9]})
+        else
+            local showroom = box.space.showroom.index.email:select({is_auth[1][2]})
+            return self:render({isAuthorized=1, name = showroom[1][2], status = 'Шоурум', photo = showroom[1][7][1]})
+        end
+    else
+        return self:render({isAuthorized=0})
+    end
 end
 
 

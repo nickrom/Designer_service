@@ -126,20 +126,13 @@ function api.add_designer(self)
             data["address"]["house"] }, data["photos"]
     }
     if (ok) then
+        local resp = self:redirect_to('/designer')
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.status = 303
         local u_id = uuid()
-        log.info(u_id)
-        local resp = self:render({text = ''}):setcookie({name = 'tarantool_id1',
-        value = 2,
-        expires = '+1y'})
-        for d in pairs(resp) do
-            for d1 in pairs(d) do
-            log.info(d1)
-        end
-        end
-        box.space.sessions:insert{ffi.string(u_id,  ffi.sizeof(u_id)), data["email"], 1 }
-        return self:render({text = ''}):setcookie({name = 'tarantool_id1',
-            value = 2,
-            expires = '+1y'})
+        local s_id = ffi.string(u_id,  ffi.sizeof(u_id))
+        box.space.sessions:insert{s_id, data["email"], 1 }
+        return resp:setcookie({name = 'tarantool_id', value = s_id, expires = '+1y'})
     else
         return self:render({text = 'Registation error'})
     end
@@ -158,8 +151,9 @@ function api.add_showroom(self)
         resp.headers['Access-Control-Allow-Origin'] = '*'
         resp.status = 303
         local u_id = uuid()
-        box.space.sessions:insert{u_id, {data["email"], 2 }}
-        return resp:setcookie({name = 'tarantool_id', value = u_id, expires = '+1y'})
+        local s_id = ffi.string(u_id,  ffi.sizeof(u_id))
+        box.space.sessions:insert{s_id, {data["email"], 2 }}
+        return resp:setcookie({name = 'tarantool_id', value = s_id, expires = '+1y'})
     else
         return self:render({text = 'Registation error'})
     end
@@ -175,8 +169,9 @@ function api.sign_in(self)
             resp.headers['Access-Control-Allow-Origin'] = '*'
             resp.status = 303
             local u_id = uuid()
-            box.space.sessions:insert{u_id, {data["email"], 2 }}
-            return resp:setcookie({name = 'tarantool_id', value = u_id, expires = '+1y'})
+            local s_id = ffi.string(u_id,  ffi.sizeof(u_id))
+            box.space.sessions:insert{s_id, data["email"], 2 }
+            return resp:setcookie({name = 'tarantool_id', value = s_id, expires = '+1y'})
         end
     end
     local ok = box.space.designer.index.email:select(data["email"])
@@ -186,8 +181,9 @@ function api.sign_in(self)
             resp.headers['Access-Control-Allow-Origin'] = '*'
             resp.status = 303
             local u_id = uuid()
-            box.space.sessions:insert{u_id, {data["email"], 1 }}
-            return resp:setcookie({name = 'tarantool_id', value = u_id, expires = '+1y'})
+            local s_id = ffi.string(u_id,  ffi.sizeof(u_id))
+            box.space.sessions:insert{s_id, data["email"], 1 }
+            return resp:setcookie({name = 'tarantool_id', value = s_id, expires = '+1y'})
         end
     end
     return self:render({text = 'Failed'})
