@@ -63,7 +63,7 @@ end
 if not box.space.sessions then
     s = box.schema.space.create('sessions')
     s:create_index('primary',
-        {type = 'tree', unique=true, parts = {1, 'unsigned'}})
+        {type = 'tree', unique=true, parts = {1, 'string'}})
     s:create_index('email',
         {type = 'hash', parts = {2, 'string'}})
     -- 1 - designer ; 2 - showroom
