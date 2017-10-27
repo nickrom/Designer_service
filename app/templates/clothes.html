@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf8">
+    <title>Магазин одежды - undefined</title>
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+<div class="header">
+    <nav class="navbar navbar-default no-margin-bottom">
+        <div class="container-fluid header-container">
+            <div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a href="/" class="navbar-brand">Магазин одежды</a>
+                <form role="search" class="navbar-form navbar-left">
+                    <div class="form-group"><input type="text" placeholder="Поиск одежды, шоурума или дизайнера ..." class="input-400 form-control"></div><button type="submit" class="btn btn-default">Поиск</button></form>
+            </div>
+            <ul class="nav navbar-nav profile">
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="porfile dropdown-toggle">
+                        <div class="profileInfo"><span class="user-name">Никита Романов</span><br><span class="user-role">дизайнер</span></div>
+                        <div class="avatar-wrapper"><img src="/images/romanov.jpg"><span class="caret"></span></div>
+                    </a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="#">Моя страница</a></li>
+                        <li><a href="#">Редактировать</a></li>
+                        <li><a href="#">Выйти</a></li>
+                        <!--li.divider-->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-default navbar-1">
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse header-container">
+            <ul class="nav navbar-nav">
+                <li class="nav-item active"><a href="/clothes" class="nav-link nav-link1">Каталог одежды</a></li>
+                <li class="nav-item "><a href="/showroom" class="nav-link nav-link1">Шоурумы</a></li>
+                <li class="nav-item "><a href="/designer" class="nav-link nav-link1">Дизайнеры</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="content">
+    <div class="col-left">
+        <div class="tree"></div>
+    </div>
+    <div class="col-center">
+        <div id="productItems"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/javascripts/libs/popper.js"></script>
+<script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
+<script type="text/javascript" src="/javascripts/category-tree.js"></script>
+<script type="text/javascript">
+    fetch('/get_items').then(function(data) {
+        data.json().then(function(products) {
+            var props = [{
+                type: "text",
+                name: "about",
+                label: "Описание"
+            }, {
+                type: "array",
+                name: "sizes",
+                label: "Размер"
+            }, {
+                type: "text",
+                name: 'showroom',
+                label: "Шоурум"
+            }, {
+                type: "text",
+                name: 'designer',
+                label: "Дизайнер"
+            }];
+
+            var $items = $("#productItems");
+            for (var item of products.items) {
+                var $item = $("<div></div>")
+                    .addClass("product-item card card-default")
+                    .appendTo($items);
+                var $cBody = $("<div></div>")
+                    .addClass("card-body")
+                    .appendTo($item);
+
+                if (item.photos.length > 0)
+                    $("<img />").attr('src', '/images/clothes/' + item.photos[0]).appendTo($cBody);
+
+                var $content = $("<div></div>")
+                    .addClass("product-content")
+                    .appendTo($cBody);
+
+                var href = "#";
+
+                $content.html(`<h3><a href='${href}'>${item.name}</a></h3>`);
+                var $info = $("<div></div>")
+                    .addClass("product-info")
+                    .appendTo($content);
+
+                $("<div></div>")
+                    .addClass("price")
+                    .text(`от ${item.des_price} до ${item.sw_price}`)
+                    .appendTo($info);
+
+                var $propsList = $("<ul></ul>")
+                    .addClass("product-desc-list")
+                    .appendTo($info);
+
+
+                var propsLi = [];
+
+                for (var prop of props) {
+                    val = ""
+                    switch (prop.type) {
+                        case "text":
+                            val = item[prop.name].toString()
+                            break;
+                        case "array":
+                            val = item[prop.name].join(", ")
+                            break;
+                        default:
+                            val = "?"
+                            break;
+                    }
+                    propsLi.push(`<li><span>${prop.label}</span>: ${val}</li>`)
+                }
+
+                $propsList.html(propsLi.join(""));
+            }
+        });
+
+    });
+</script>
+</body>
+
+</html>

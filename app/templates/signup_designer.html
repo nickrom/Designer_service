@@ -3,36 +3,45 @@
 
 <head>
     <meta charset="utf8">
-    <title>Регистрация</title>
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <title>Магазин одежды - Домашняя страница</title>
     <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
-
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
-    <div class="header">
-        <nav class="navbar navbar-default no-margin-bottom">
-            <div class="container-fluid header-container">
-                <div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a href="/" class="navbar-brand">Магазин одежды</a>
-                    <form role="search" class="navbar-form navbar-left">
-                        <div class="form-group"><input type="text" placeholder="Поиск одежды, шоурума или дизайнера ..." class="input-400 form-control"></div><button type="submit" class="btn btn-default">Поиск</button></form>
-                </div>
+<div class="header">
+    <nav class="navbar navbar-default no-margin-bottom">
+        <div class="container-fluid header-container">
+            <div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a href="/" class="navbar-brand">Магазин одежды</a>
+                <form role="search" class="navbar-form navbar-left">
+                    <div class="form-group"><input type="text" placeholder="Поиск одежды, шоурума или дизайнера ..." class="input-400 form-control"></div><button type="submit" class="btn btn-default">Поиск</button></form>
             </div>
-        </nav>
-        <nav class="navbar navbar-default navbar-1">
-            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse header-container">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item"><a href="/" class="nav-link nav-link1">Каталог одежды</a></li>
-                    <li class="nav-item"><a href="/showroom" class="nav-link nav-link1">Шоурумы</a></li>
-                    <li class="nav-item"><a href="/designer" class="nav-link nav-link1">Дизайнеры</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="content">
-        <form onsubmit="sendSignupData()" class="form-horizontal signup-form">
+            <ul class="nav navbar-nav float-right">
+                <li role="menu" class="dropdown"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">Зарегистрироваться</a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="/signup_designer">Регистрация дизайнера</a></li>
+                        <li><a href="/signup_showroom">Регистрация шоурума</a></li>
+                    </ul>
+                </li>
+                <li><a href="/signin">Войти</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-default navbar-1">
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse header-container">
+            <ul class="nav navbar-nav">
+                <li class="nav-item "><a href="/clothes" class="nav-link nav-link1">Каталог одежды</a></li>
+                <li class="nav-item "><a href="/showroom" class="nav-link nav-link1">Шоурумы</a></li>
+                <li class="nav-item "><a href="/designer" class="nav-link nav-link1">Дизайнеры</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="content">
+    <div class="form-wrapper">
+        <form onsubmit="javascript:void(0);" class="form-horizontal">
             <fieldset>
                 <legend>Signup designer</legend>
                 <div class="form-group"><label for="inputEmail" class="col-lg-2 control-label">Nickname</label>
@@ -69,8 +78,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button id="submitButton" type="submit" class="btn btn-primary">Sign up</button>
-                    </div>
+                        <button id="submitButton" type="submit" class="btn btn-primary">Sign up</button></div>
                 </div>
             </fieldset>
         </form>
@@ -78,12 +86,65 @@
             <>
         </div>
     </div>
-    <script type="text/javascript" src="/javascripts/libs/popper.js"></script>
-    <script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
-    <script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
-    <script type="text/javascript" src="/javascripts/common.js"></script>
-    <script type="text/javascript" src="/javascripts/signup-designer.js"></script>
-    <script type="text/javascript" src="/javascripts/avatar-upload.js"></script>
+</div>
+<script type="text/javascript" src="/javascripts/libs/popper.js"></script>
+<script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
+<script type="text/javascript">
+    $("form.form-horizontal").on("submit", function(evt) {
+        evt.preventDefault();
+
+        let inputsSelectors = [{
+            selector: "#inputNickname",
+            field: 'nickname'
+        }, {
+            selector: "#inputEmail",
+            field: 'email'
+        }, {
+            selector: "#inputName",
+            field: 'name'
+        }, {
+            selector: "#inputPhone",
+            field: 'phone'
+        }, {
+            selector: "#inputPassword",
+            field: 'password'
+        }, {
+            selector: "#textArea",
+            field: 'about'
+        }];
+        let addressFields = [{
+            selector: "#inputCity",
+            field: "city"
+        }, {
+            selector: "#inputStreet",
+            field: "street"
+        }, {
+            selector: "#inputHouse",
+            field: "house"
+        }];
+        let reqData = {};
+
+        for (let obj of inputsSelectors) {
+            reqData[obj.field] = $(obj.selector).val();
+        }
+
+        reqData['address'] = {};
+        for (let addr of addressFields) {
+            reqData['address'][addr.field] = $(addr.selector).val();
+        }
+
+        reqData['photos'] = '[image]';
+
+        fetch('/signup_designer', {
+            method: 'POST',
+            body: JSON.stringify(reqData),
+            redirect: 'follow'
+        }).then((resp) => {
+            window.location.href = resp.url;
+        });
+    });
+</script>
 </body>
 
 </html>

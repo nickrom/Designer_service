@@ -11,7 +11,7 @@ box.cfg {
 }
 
 function views.homepage(self)
-    return self:render({isAuthorized=1})
+    return self:render({isAuthorized=0})
 end
 
 
