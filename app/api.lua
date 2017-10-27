@@ -27,6 +27,9 @@ function api.get_all_designers(self)
             name = d[5],
             phone = d[6],
             about = d[7],
+            city = d[8][1],
+            street = d[8][2],
+            house = d[8][3],
             photos = d[9]
         })
     end
