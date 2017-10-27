@@ -86,7 +86,7 @@
 <script type="text/javascript">
     fetch('/get_items').then(function(data) {
         data.json().then(function(products) {
-            var props = [{
+            let props = [{
                 type: "text",
                 name: "about",
                 label: "Описание"
@@ -104,26 +104,26 @@
                 label: "Дизайнер"
             }];
 
-            var $items = $("#productItems");
-            for (var item of products.items) {
-                var $item = $("<div></div>")
+            let $items = $("#productItems");
+            for (let item of products.items) {
+                let $item = $("<div></div>")
                     .addClass("product-item card card-default")
                     .appendTo($items);
-                var $cBody = $("<div></div>")
+                let $cBody = $("<div></div>")
                     .addClass("card-body")
                     .appendTo($item);
 
                 if (item.photos.length > 0)
                     $("<img />").attr('src', '/images/clothes/' + item.photos[0]).appendTo($cBody);
 
-                var $content = $("<div></div>")
+                let $content = $("<div></div>")
                     .addClass("product-content")
                     .appendTo($cBody);
 
-                var href = "#";
+                let href = "#";
 
                 $content.html(`<h3><a href='${href}'>${item.name}</a></h3>`);
-                var $info = $("<div></div>")
+                let $info = $("<div></div>")
                     .addClass("product-info")
                     .appendTo($content);
 
@@ -132,24 +132,24 @@
                     .text(`от ${item.des_price} до ${item.sw_price}`)
                     .appendTo($info);
 
-                var $propsList = $("<ul></ul>")
+                let $propsList = $("<ul></ul>")
                     .addClass("product-desc-list")
                     .appendTo($info);
 
 
-                var propsLi = [];
+                let propsLi = [];
 
-                for (var prop of props) {
-                    val = ""
+                for (let prop of props) {
+                    val = "";
                     switch (prop.type) {
                         case "text":
-                            val = item[prop.name].toString()
+                            val = item[prop.name].toString();
                             break;
                         case "array":
-                            val = item[prop.name].join(", ")
+                            val = item[prop.name].join(", ");
                             break;
                         default:
-                            val = "?"
+                            val = "?";
                             break;
                     }
                     propsLi.push(`<li><span>${prop.label}</span>: ${val}</li>`)

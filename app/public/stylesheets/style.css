@@ -2,12 +2,16 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 14px !important; }
 
-a {
-  color: #00B7FF; }
-
 html, body {
   width: 100%;
   height: 100%; }
+
+a{
+  color: #666666;
+}
+a:hover {
+  text-decoration: underline;
+}
 
 .glyphicon {
   display: inline-block;
@@ -220,7 +224,6 @@ form.form-horizontal {
   height: 65px; }
 
 .tree {
-  font-family: "Roboto", sans-serif;
   font-size: 12pt;
   padding-top: 20px;
   padding-bottom: 10px;
@@ -240,13 +243,13 @@ form.form-horizontal {
   margin-right: 8px;
   font-size: 14pt;
   padding: 5px 6.5px;
-  color: rgba(0, 0, 0, 0.8); }
+  color: rgba(45, 45, 45, 0.8); }
   .fa.category:before {
     content: " "; }
   .fa.category:hover {
     cursor: pointer;
     text-decoration: none;
-    color: black; }
+    color: rgba(45, 45, 45, 1);; }
   .fa.category.has-child:before {
     content: "\f054"; }
   .fa.category.has-child.opened:before {
