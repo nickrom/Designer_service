@@ -80,7 +80,7 @@
         <div class="tree"></div>
     </div>
     <div class="col-center">
-        <div id="productItems"></div>
+        <div id="showroomsItems"></div>
     </div>
 </div>
 <script type="text/javascript" src="/javascripts/libs/popper.js"></script>
@@ -112,7 +112,6 @@
 
                 infoItems.splice(1, 0, `<li><span>Адрес</span>: ${location}</li>`);
 
-
                 let itemHtml = "";
 
                 itemHtml += `<div class="product-item card card-default">`;
@@ -127,7 +126,7 @@
                 showroomsItems.push(itemHtml);
             }
 
-            $("#productItems").html(showroomsItems.join(""));
+            $("#showroomsItems").html(showroomsItems.join(""));
         });
 </script>
 </body>
