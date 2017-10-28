@@ -74,7 +74,7 @@
         <div class="col-left">
             <div class="tree"></div>
         </div>
-        <div class="col-center" style="padding: 20px">
+        <div class="col-center">
             <div id="designersItems"></div>
         </div>
     </div>
@@ -82,6 +82,7 @@
     <script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
     <script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
     <script type="text/javascript" src="/javascripts/category-tree.js"></script>
+    <script type="text/javascript" src="/javascripts/render-card.js"></script>
     <script>
             fetch('/get_designers')
                 .then(resp => resp.json())
@@ -89,36 +90,24 @@
                     console.log("Designers: ", data);
 
                     let designersItems = [];
-                    let fields = [
-                        {name: 'nickname', label: 'Nick'},
-                        {name: 'about', label: 'О себе'},
-                        {name: 'phone', label: 'Телефон'},
-                        {name: 'email', label: 'Email'}
-                    ];
 
                     for(let designer of data.designers) {
-                        let itemHtml = "";
-
-                        let infoItems = fields.map(
-                            field => `<li><span>${field.label}</span>: ${designer[field.name]}</li>`
-                        );
-
                         let location = ['city', 'street', 'house']
-                            .map(key => designer[key])
+                            .map(field => designer[field])
                             .join(', ');
+                        let fields = [
+                            {label: 'О себе', text: designer.about},
+                            {label: 'Nickname', text: designer.nickname},
+                            {label: 'Телефон', text: designer.phone},
+                            {label: 'Email', text: designer.email},
+                            {label: 'Адрес', text: location},
+                        ];
+                        let card = renderCard({
+                            photo: '/images/designers/' + designer.photos,
+                            title: designer.name
+                        }, fields);
 
-                        infoItems.push(`<li><span>Адрес</span>: ${location}</li>`);
-
-                        itemHtml += `<div class="product-item card card-default">`;
-                        itemHtml += `<div class="card-body"><img src="/images/designers/${designer.photos}">`;
-                        itemHtml += `<div class="product-content">`;
-                        itemHtml += `<h3><a href="#">${designer.name}</a></h3>`;
-                        itemHtml += `<div class="product-info">`;
-                        itemHtml += `<ul class="product-desc-list">`;
-                        itemHtml += infoItems.join('');
-                        itemHtml += `</ul></div></div></div></div>`;
-
-                        designersItems.push(itemHtml);
+                        designersItems.push(card);
                     }
 
                     $("#designersItems").html(designersItems.join(""));

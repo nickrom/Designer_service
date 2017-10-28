@@ -87,43 +87,31 @@
 <script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
 <script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
 <script type="text/javascript" src="/javascripts/category-tree.js"></script>
+<script type="text/javascript" src="/javascripts/render-card.js"></script>
 <script type="text/javascript">
     fetch('/get_showrooms')
         .then(resp => resp.json())
         .then(data => {
             console.log("Showrooms", data);
-            props = [
-                {name: "about", label: 'Описание'},
-                {name: "phone", label: 'Телефон'},
-                {name: "email", label: 'Email'}
-            ];
 
             let showroomsItems = [];
 
             for (let item of data.showrooms) {
-                let infoItems = [];
                 let location = ['city', 'street', 'house']
                     .map(field => item[field])
                     .join(', ');
+                let fields = [
+                    {label: 'Описание', text: item.about},
+                    {label: 'Адрес', text: location},
+                    {label: 'Телефон', text: item.phone},
+                    {label: 'Email', text: item.email}
+                ];
+                let card = renderCard({
+                    photo: '/images/showrooms/' + item.photos[0],
+                    title: item.name
+                }, fields);
 
-                for (let prop of props) {
-                    infoItems.push(`<li><span>${prop.label}</span>: ${item[prop.name]}</li>`);
-                }
-
-                infoItems.splice(1, 0, `<li><span>Адрес</span>: ${location}</li>`);
-
-                let itemHtml = "";
-
-                itemHtml += `<div class="product-item card card-default">`;
-                itemHtml += `<div class="card-body"><img src="/images/showrooms/${item.photos[0]}">`;
-                itemHtml += `<div class="product-content">`;
-                itemHtml += `<h3><a href="#">${item.name}</a></h3>`;
-                itemHtml += `<div class="product-info">`;
-                itemHtml += `<ul class="product-desc-list">`;
-                itemHtml += infoItems.join('');
-                itemHtml += `</ul></div></div></div></div>`;
-
-                showroomsItems.push(itemHtml);
+                showroomsItems.push(card);
             }
 
             $("#showroomsItems").html(showroomsItems.join(""));
