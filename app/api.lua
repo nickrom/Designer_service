@@ -5,6 +5,10 @@ local log = require('log')
 local json = require('json')
 local uuid = require('uuid')
 local ffi = require('ffi')
+local base64 = require('base64')
+
+local ltn12 = require "ltn12"
+local mime = require "mime"
 
 box.cfg {
     wal_dir = './logs/xlog_files',
@@ -132,10 +136,24 @@ end
 
 function api.add_designer(self)
     local data = self:json()
+    local photo_base64 = data["photos"]
+    local type = string.match(photo_base64, "data:image/(%a+);base64")
+    local bytes = string.match(photo_base64, ",(.+)")
+    local photo_name = string.gsub(data["nickname"], "%s+", "")
+    local path = "./public/images/designers/photos/" .. photo_name .. "." .. type
+    local short_path = "/photos/" .. photo_name .. "." .. type
+    log.info(path)
+    ltn12.pump.all(
+        ltn12.source.string(bytes),
+        ltn12.sink.chain(
+            mime.decode("base64"),
+            ltn12.sink.file(io.open(path,"w"))
+        )
+    )
     log.info(data["id"])
     local ok = box.space.designer:auto_increment{data["nickname"], data["email"], data["password"],
         data["name"], data["phone"], data["about"], {data["address"]["city"], data["address"]["street"],
-            data["address"]["house"] }, data["photos"]
+            data["address"]["house"] }, short_path
     }
     if (ok) then
         local resp = self:redirect_to('/designer')
@@ -152,10 +170,23 @@ end
 
 function api.add_showroom(self)
     local data = self:json()
-    log.info(data)
+    local photo_base64 = data["photos"][1]
+    local type = string.match(photo_base64, "data:image/(%a+);base64")
+    local bytes = string.match(photo_base64, ",(.+)")
+    local photo_name = string.gsub(data["nickname"], "%s+", "")
+    local path = "./public/images/showrooms/photos/" .. photo_name .. "." .. type
+    local short_path = "/photos/" .. photo_name .. "." .. type
+    log.info(path)
+    ltn12.pump.all(
+        ltn12.source.string(bytes),
+        ltn12.sink.chain(
+            mime.decode("base64"),
+            ltn12.sink.file(io.open(path,"w"))
+        )
+    )
     local ok = box.space.showroom:auto_increment{data["nickname"], data["email"], data["password"],
         data["about"], {data["address"]["city"], data["address"]["street"], data["address"]["house"]},
-        data["phone"], data["photos"]
+        data["phone"], {short_path}
     }
     log.info(data)
     if (ok) then
