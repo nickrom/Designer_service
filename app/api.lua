@@ -99,11 +99,13 @@ function api.get_all_categories(self)
 end
 
 function api.get_all_items(self)
+    local category = self:query_param('category')
+    local list = box.space.item.index.category:select{tonumber(category)}
     local data = {
         items = {},
-        count = box.space.item:len()
+        count = table.getn(list)
     }
-    for k, d  in box.space.item:pairs{} do
+    for k, d  in pairs(list) do
         local designer = box.space.designer:select(d[5])
         local des_name = designer[1][5]
         local showroom = box.space.showroom:select(d[8])
