@@ -222,25 +222,16 @@ span.arrow-right {
     float: right;
     display: inline-block; }
     .profile .avatar-wrapper img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%; }
+      width: 64px !important;
+      height: 64px !important;
+      border-radius: 50%;
+    }
 
 form.form-horizontal {
   position: absolute;
   top: 0;
   width: 100%; }
 
-#avatarUpload {
-  visibility: hidden; }
-
-#avatarPreview {
-  position: relative;
-  display: block; }
-
-#avatarPreview > img {
-  width: 65px;
-  height: 65px; }
 
 .tree {
   font-size: 12pt;
@@ -328,4 +319,32 @@ form.form-horizontal {
 
 .card.card-default .card-body .product-content {
   vertical-align: top;
+}
+
+.form-group .avatar-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  height: 240px;
+}
+
+.form-group .avatar-wrapper > canvas {
+  height: 240px;
+}
+
+.form-group .js-image-file {
+  visibility: hidden;
+}
+
+.form-group .upload-button-wrapper {
+  display: flex;
+  width: 240px;
+  justify-content: center;
+  padding-top: 2px;
+}
+
+.upload-button-wrapper > button {
+  width: 100%;
 }
