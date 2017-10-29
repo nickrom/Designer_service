@@ -100,10 +100,16 @@
                 <div class="form-group"><label for="inputPhone" class="col-lg-2 control-label">Phone</label>
                     <div class="col-lg-10"><input id="inputPhone" type="text" placeholder="Phone" class="form-control"></div>
                 </div>
-                <div class="form-group"><label for="avatarUploadPath" class="col-lg-2 control-label">Photo</label>
-                    <div class="col-lg-8"><input id="avatarUploadPath" type="text" placeholder="No image chosen" disabled class="form-control"></div>
-                    <div class="col-lg-2"><button id="avatarUploadButton" type="button" class="btn btn-default">Open ..</button></div><input id="avatarUpload" type="file">
-                    <div id="avatarPreview"></div>
+                <div class="form-group"><label class="col-lg-2 control-label">Photo</label>
+                    <div class="col-lg-10">
+                        <div class="avatar-wrapper">
+                            <canvas class="js-image-preview" width="240px" height="240px"></canvas>
+                        </div>
+                        <div class="upload-button-wrapper">
+                            <button type="button" class="js-image-upload btn btn-link">Change ..</button>
+                        </div>
+                        <input class="js-image-file" type="file">
+                    </div>
                 </div>
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
@@ -119,6 +125,7 @@
 <script type="text/javascript" src="/javascripts/libs/popper.js"></script>
 <script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
 <script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
+<script type="text/javascript" src="/javascripts/upload-image.js"></script>
 <script type="text/javascript">
     $("form.form-horizontal").on("submit", function(evt) {
         let inputsSelectors = [{
@@ -159,9 +166,9 @@
             reqData['address'][addr.field] = $(addr.selector).val();
         }
 
-        reqData['image'] = '[image]';
+        reqData['photos'] = [$(".js-image-preview")[0].toDataURL()];
 
-        fetch(+'/showroom', {
+        fetch('/showroom', {
             method: 'POST',
             body: JSON.stringify(reqData),
             redirect: 'follow',

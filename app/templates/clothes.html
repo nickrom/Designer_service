@@ -83,88 +83,33 @@
 <script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
 <script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
 <script type="text/javascript" src="/javascripts/category-tree.js"></script>
+<script type="text/javascript" src="/javascripts/render-card.js"></script>
 <script type="text/javascript">
-    fetch('/get_items').then(function(data) {
-        data.json().then(function(products) {
-            let props = [
-                {
-                    type: "text",
-                    name: "about",
-                    label: "Описание"
-                },
-                {
-                    type: "array",
-                    name: "sizes",
-                    label: "Размер"
-                },
-                {
-                    type: "text",
-                    name: 'showroom',
-                    label: "Шоурум"
-                },
-                {
-                    type: "text",
-                    name: 'designer',
-                    label: "Дизайнер"
-                }
-            ];
+    fetch('/get_items')
+        .then(resp => resp.json())
+        .then(function(data) {
+            console.log('data: ', data);
 
-            let $items = $("#productItems");
-            for (let item of products.items) {
-                let $item = $("<div></div>")
-                    .addClass("product-item card card-default")
-                    .appendTo($items);
-                let $cBody = $("<div></div>")
-                    .addClass("card-body")
-                    .appendTo($item);
+            let cards = [];
 
-                if (item.photos.length > 0)
-                    $("<img />").attr('src', '/images/clothes/' + item.photos[0]).appendTo($cBody);
+            for(let item of data.items) {
+                let fields = [
+                    {label: 'Описание', text: item.about},
+                    {label: 'Дизайнер', text: item.designer},
+                    {label: 'Шоурум', text: item.showroom},
+                    {label: 'Размер', text: item.sizes.join(', ')}
+                ];
 
-                let $content = $("<div></div>")
-                    .addClass("product-content")
-                    .appendTo($cBody);
+                let card = renderCard({
+                    photo: '/images/clothes/' + item.photos[0],
+                    title: item.name,
+                    price: item.des_price
+                }, fields);
 
-                let href = "#";
-
-                $content.html(`<h3><a href='${href}'>${item.name}</a></h3>`);
-                let $info = $("<div></div>")
-                    .addClass("product-info")
-                    .appendTo($content);
-
-                $("<div></div>")
-                    .addClass("price")
-                    .text(`${item.des_price} руб.`)
-                    .appendTo($info);
-
-                let $propsList = $("<ul></ul>")
-                    .addClass("product-desc-list")
-                    .appendTo($info);
-
-
-                let propsLi = [];
-
-                for (let prop of props) {
-                    val = "";
-                    switch (prop.type) {
-                        case "text":
-                            val = item[prop.name].toString();
-                            break;
-                        case "array":
-                            val = item[prop.name].join(", ");
-                            break;
-                        default:
-                            val = "?";
-                            break;
-                    }
-                    propsLi.push(`<li><span>${prop.label}</span>: ${val}</li>`)
-                }
-
-                $propsList.html(propsLi.join(""));
+                cards.push(card);
             }
+            $("#productItems").html(cards.join(""));
         });
-
-    });
 </script>
 </body>
 
