@@ -33,6 +33,10 @@ a:hover {
   display: block;
   min-height: 56px; }
 
+/*#bs-example-navbar-collapse-1 {*/
+  /*padding-left: 2px;*/
+/*}*/
+
 .content {
   position: relative;
   display: block;
