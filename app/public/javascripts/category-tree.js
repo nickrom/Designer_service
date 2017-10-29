@@ -29,7 +29,8 @@ function createTree($place, tree) {
       }
       tmp = $("<ul></ul>").appendTo($parent);
       for (let child of elem["categories"]) {
-        let $child = $("<li></li>").html(`<a href='#'>${child.name}</a>`).data("id", child.id);
+        let $child = $("<li></li>")
+            .html(`<a href='/clothes?category=${child.id}' data-id='${child.id}'>${child.name}</a>`);
         tmp.append($child);
         queue.push({ elem: child, jQuery: $child });
       }
@@ -38,19 +39,18 @@ function createTree($place, tree) {
 }
 
 $(document).ready(function() {
-  $.ajax('/category', {
-      dataType: 'json'
+    $.ajax('/category', {
+        dataType: 'json'
     }).done((data) => {
-      let struct = JSON.parse(data);
+        let struct = JSON.parse(data);
 
-      createTree($('.tree'), struct);
-  
-      $(".fa.category").on("click", e => {
-        let $obj = $(e.target);
-        $obj.toggleClass("opened");
-        $obj.parent().siblings("ul").toggleClass("opened");
-      });
+        createTree($('.tree'), struct);
 
-  });
+        $(".fa.category").on("click", e => {
+            let $obj = $(e.target);
+            $obj.toggleClass("opened");
+            $obj.parent().siblings("ul").toggleClass("opened");
+        });
+
+    });
 });
-

@@ -84,33 +84,11 @@
 <script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
 <script type="text/javascript" src="/javascripts/category-tree.js"></script>
 <script type="text/javascript" src="/javascripts/render-card.js"></script>
+<script type="text/javascript" src="/javascripts/get-items.js"></script>
 <script type="text/javascript">
-    fetch('/get_items')
-        .then(resp => resp.json())
-        .then(function(data) {
-            console.log('data: ', data);
-
-            let cards = [];
-
-            for(let item of data.items) {
-                let fields = [
-                    {label: 'Описание', text: item.about},
-                    {label: 'Дизайнер', text: item.designer},
-                    {label: 'Шоурум', text: item.showroom},
-                    {label: 'Размер', text: item.sizes.join(', ')}
-                ];
-
-                let card = renderCard({
-                    photo: '/images/clothes/' + item.photos[0],
-                    title: item.name,
-                    price: item.des_price
-                }, fields);
-
-                cards.push(card);
-            }
-            $("#productItems").html(cards.join(""));
-        });
 </script>
+
+
 </body>
 
 </html>
