@@ -211,7 +211,7 @@ span.arrow-right {
 .profile {
   float: right !important; }
   .profile .dropdown-menu {
-    min-width: 252.5px; }
+    width: 100%; }
   .profile .profileInfo {
     display: inline-block; }
     .profile .profileInfo span {
@@ -225,8 +225,10 @@ span.arrow-right {
   .profile .avatar-wrapper {
     display: inline-block; }
     .profile .avatar-wrapper img {
-      width: 64px !important;
-      height: 64px !important;
+      /*width: 64px !important;*/
+      /*height: 64px !important;*/
+      width: 50px !important;
+      height: 50px !important;
       border-radius: 50%;
     }
 
