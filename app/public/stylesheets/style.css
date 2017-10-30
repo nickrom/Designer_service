@@ -211,7 +211,7 @@ span.arrow-right {
 .profile {
   float: right !important; }
   .profile .dropdown-menu {
-    min-width: 213px; }
+    min-width: 252.5px; }
   .profile .profileInfo {
     display: inline-block; }
     .profile .profileInfo span {
@@ -223,12 +223,18 @@ span.arrow-right {
         letter-spacing: 0.5px;
         text-transform: uppercase; }
   .profile .avatar-wrapper {
-    float: right;
     display: inline-block; }
     .profile .avatar-wrapper img {
       width: 64px !important;
       height: 64px !important;
       border-radius: 50%;
+    }
+
+    .profile > li > a {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 20px;
     }
 
 form.form-horizontal {
@@ -326,7 +332,8 @@ form.form-horizontal {
 }
 
 .form-group .avatar-wrapper {
-  display: flex;
+  position: relative;
+  display: inline-flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -336,6 +343,23 @@ form.form-horizontal {
 
 .form-group .avatar-wrapper > canvas {
   height: 240px;
+}
+.form-group .avatar-wrapper > .fa.fa-times {
+  position: absolute;
+  display: none;
+  right: 8px;
+  top: 8px;
+  font-size: 20pt;
+}
+
+.form-group .avatar-wrapper > .fa.fa-times.visible {
+  display: inline-block;
+  color: rgba(250, 0, 0, 0.6);
+}
+
+.form-group .avatar-wrapper > .fa.fa-times.visible:hover {
+  color: rgba(250, 0, 0, 1);
+  cursor: pointer;
 }
 
 .form-group .js-image-file {

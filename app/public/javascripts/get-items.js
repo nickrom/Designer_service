@@ -31,11 +31,3 @@ var Clothes = (function() {
 
     return {Get};
 }());
-
-$(document).ready(() => {
-    let url = "/get_items";
-    let m = window.location.href.match(/\?.*/);
-    if (m)
-        url += m;
-    Clothes.Get(url);
-})

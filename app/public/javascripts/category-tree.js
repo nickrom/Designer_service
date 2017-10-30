@@ -38,19 +38,18 @@ function createTree($place, tree) {
   }
 }
 
-$(document).ready(function() {
-    $.ajax('/category', {
-        dataType: 'json'
-    }).done((data) => {
-        let struct = JSON.parse(data);
-
-        createTree($('.tree'), struct);
-
-        $(".fa.category").on("click", e => {
-            let $obj = $(e.target);
-            $obj.toggleClass("opened");
-            $obj.parent().siblings("ul").toggleClass("opened");
-        });
-
-    });
-});
+// $(document).ready(function() {
+//     $.ajax('/category', {
+//         dataType: 'json'
+//     }).done((data) => {
+//         let struct = JSON.parse(data);
+//
+//         createTree($('.tree'), struct);
+//
+//         $(".fa.category").on("click", e => {
+//             let $obj = $(e.target);
+//             $obj.toggleClass("opened");
+//             $obj.parent().siblings("ul").toggleClass("opened");
+//         });
+//     });
+// });

@@ -13,10 +13,16 @@
 <div class="header">
     <nav class="navbar navbar-default no-margin-bottom">
         <div class="container-fluid header-container">
-            <div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span
+                        class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 <a href="/" class="navbar-brand">Магазин одежды</a>
                 <form role="search" class="navbar-form navbar-left">
-                    <div class="form-group"><input type="text" placeholder="Поиск одежды, шоурума или дизайнера ..." class="input-400 form-control"></div><button type="submit" class="btn btn-default">Поиск</button></form>
+                    <div class="form-group"><input type="text" placeholder="Поиск одежды, шоурума или дизайнера ..."
+                                                   class="input-400 form-control"></div>
+                    <button type="submit" class="btn btn-default">Поиск</button>
+                </form>
             </div>
             <!--<%= isAuthorized %>-->
             % if (isAuthorized == 1) then
@@ -24,21 +30,23 @@
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="porfile dropdown-toggle">
                         <div class="profileInfo"><span class="user-name">
-                                <%= name %>
-                            </span><br><span class="user-role">
-                                % if (status == 1) then
-                                    Дизайнер
-                                % else
-                                    Шоурум
-                                % end
-                            </span></div>
-                        <div class="avatar-wrapper"><img src=
-                                                                 % if (status == 1) then
-                            <%= "/images/designers/" .. photo %>
+                                    <%= name %>
+                                </span><br><span class="user-role">
+                                    % if (status == 1) then
+                                        Дизайнер
+                                    % else
+                                        Шоурум
+                                    % end
+                                </span>
+                        </div>
+                        <div class="avatar-wrapper">
+                            % if (status == 1) then
+                            <img src="/images/designers/<%= photo %>">
                             % else
-                            <%= "/images/showrooms/" .. photo %>
+                            <img src="/images/showrooms/<%= photo %>">
                             % end
-                            <span class="caret"></span></div>
+                        </div>
+                        <span class="caret"></span>
                     </a>
                     <ul role="menu" class="dropdown-menu">
                         <li><a href="#">Моя страница</a></li>
@@ -86,6 +94,34 @@
 <script type="text/javascript" src="/javascripts/render-card.js"></script>
 <script type="text/javascript" src="/javascripts/get-items.js"></script>
 <script type="text/javascript">
+    $(document).ready(function() {
+        let urlPathname = "/get_items";
+
+        $.ajax('/category', {
+            dataType: 'json'
+        }).then((data) => {
+            let struct = JSON.parse(data);
+
+            createTree($('.tree'), struct);
+
+            $(".fa.category").on("click", e => {
+                let $obj = $(e.target);
+                $obj.toggleClass("opened");
+                $obj.parent().siblings("ul").toggleClass("opened");
+            });
+        }).then(() => {
+            let m = window.location.href.match(new RegExp("[?].*"));
+            let url = urlPathname;
+            if (m)
+                url += m;
+            return Clothes.Get(url);
+        }).then(() => {
+            $(".tree ul li a:nth-of-type(2)").on("click", function(e) {
+               e.preventDefault();
+               Clothes.Get(urlPathname + "?category=" + $(this).data("id"));
+            });
+        });
+    });
 </script>
 
 
